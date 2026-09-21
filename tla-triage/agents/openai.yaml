@@ -1,0 +1,4 @@
+interface:
+  display_name: "TLA Triage"
+  short_description: "Triage whether risky work needs bounded TLA+ modeling"
+  default_prompt: "Use $tla-triage to decide whether this change should be modeled in TLA+ before implementation."
