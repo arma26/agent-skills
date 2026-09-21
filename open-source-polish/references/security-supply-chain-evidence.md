@@ -4,7 +4,7 @@
 
 Use this reference when the security or supply-chain overlay activates. Inspect the mechanisms that exist. Do not require a mechanism only because an external checklist includes it.
 
-Prefer precise behavior observations over scores, badges, or broad labels. Record an unavailable external setting as an `evidence_gap`. Keep maintainer context separate from observed evidence.
+Prefer precise behavior observations over broad labels or third-party claims. Record an unavailable external setting as an `evidence_gap`. Keep maintainer context separate from observed evidence.
 
 ## Workflow trust
 
@@ -94,5 +94,3 @@ For each finding, record:
 - evidence limits and detection uncertainty.
 - maintainer context or an alternative control, kept separate from the observation.
 - the smallest applicable remediation.
-
-Discard a recommendation when it only improves a badge, score, or checklist result without unlocking a milestone gate or reducing an active risk.

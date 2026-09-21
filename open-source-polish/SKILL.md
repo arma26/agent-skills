@@ -234,7 +234,7 @@ Prefer moving ambiguous material to a named archive over immediate deletion. Req
 
 ## Judgment rules
 
-- Treat maturity as cumulative capability, not a documentation score.
+- Treat maturity as cumulative capability, not a count of documents or configured tools.
 - Treat risk overlays as independent of maturity.
 - Prefer observed mechanisms over policy-shaped files.
 - Prefer transferable ecosystem conventions over private maintainer habits.
@@ -242,7 +242,7 @@ Prefer moving ambiguous material to a named archive over immediate deletion. Req
 - Prefer one canonical agent authority with thin tool-specific pointers over duplicated instruction sets.
 - Treat a work unit as one reviewable outcome with explicit acceptance and verification, not as an arbitrary quantity of changed files.
 - Treat CI as verification evidence, not as the source of intent or permission.
-- Prefer precise behavior observations over composite labels, badges, or external scores.
+- Prefer precise behavior observations over broad labels or third-party claims.
 - Treat a configured mechanism as evidence of intent. Confirm its operation before crediting an operating process.
 - Require explicit authority for agent actions that publish, deploy, message, bill, or otherwise change external state.
 - Prefer scoped ownership over an unexplained roster when several components exist.

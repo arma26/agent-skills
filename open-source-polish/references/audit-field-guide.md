@@ -12,7 +12,6 @@ Investigate when you find:
 - a required workflow that exists only as a maintainer's shell alias.
 - setup commands that write to global, home-directory, or shared configuration without explaining scope and cleanup.
 - a changelog, roadmap, support table, or version policy that looks authoritative but stopped updating.
-- badges that imply project status without a plain-language status statement.
 - release automation without a documented release owner or support policy.
 - a maintainer roster without review routing in a multi-component repository.
 - a governance link to another repository without a local source-of-truth map.
@@ -106,7 +105,6 @@ Avoid these unless evidence shows a concrete need:
 - moving conventional files only to make the root look cleaner.
 - deleting ambiguous artifacts before identifying ownership and consumers.
 - adding dashboards when local logs and errors would provide enough clarity.
-- adding badges without the process they claim to summarize.
 - manufacturing roadmap dates, support promises, or adoption evidence.
 - copying generic community templates that no maintainer will operate.
 - rewriting a large README when moving one runnable example would solve the main problem.
@@ -115,7 +113,6 @@ Avoid these unless evidence shows a concrete need:
 - requiring AI attribution when the project can instead state a deliberate no-attribution policy.
 - adding autonomous bots to demonstrate maturity when bounded human-invoked agents satisfy the project need.
 - creating several tool-specific instruction files when one canonical entry point is sufficient.
-- adding controls only to improve a badge or external score.
 - requiring fuzzing or static analysis without a relevant attack surface or an unresolved risk that the analysis addresses.
 - requiring independent review that a single-maintainer project cannot operate, unless the affected path carries exceptional risk.
 
@@ -138,7 +135,7 @@ Avoid these unless evidence shows a concrete need:
 - Measuring work units by diff size while ignoring distinct outcomes, owners, permissions, or rollback paths.
 - Treating agent-to-agent delegation as new permission to mutate external systems.
 - Requiring production automation controls for a local coding assistant that has no production authority.
-- Treating a workflow file, dependency bot, security policy, signature, or badge as proof that its process operates.
+- Treating a workflow file, dependency bot, security policy, or signature as proof that its process operates.
 - Equating commit frequency or contributor-company diversity with project maturity.
 - Treating a hidden forge, webhook, or account setting as satisfied because the audit cannot inspect it.
 - Recommending dependency pinning without an owner and update path.

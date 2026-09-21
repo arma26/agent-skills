@@ -493,7 +493,6 @@ This script should remain read-only by default and only exist if repeated real-w
 ## Open Questions
 
 - how aggressively should the skill normalize project structure when a repo is functional but unusual
-- should the skill include a scoring rubric or stay qualitative
 - should project-type expectations include language-specific overlays later
 
 ## Recommendation
