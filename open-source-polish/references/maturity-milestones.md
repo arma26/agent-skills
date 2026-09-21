@@ -21,8 +21,10 @@ Required gates:
 - No setup-looking command hides destructive behavior.
 - Known limitations and major non-goals are visible.
 - One canonical agent instruction entry point defines authority, scope, and precedence, unless the repository explicitly prohibits agent-authored or agent-reviewed changes.
-- The agent environment contract provides repository-owned setup and validation, tool and identity expectations, writable and state ownership boundaries, side effects, least-privilege external capabilities, and failure cleanup.
-- The project defines an acceptable work unit, an applicable quality floor, and the minimum work-request, verification, status, and handoff information needed to distinguish complete work from partial work.
+- The agent environment contract defines repository-owned setup, validation, identity, writable boundaries, state ownership, side effects, least-privilege capabilities, and failure cleanup.
+- The project defines an acceptable work unit and quality floor. Work requests, verification, status, and handoffs distinguish complete work from partial work.
+- When automation has secrets, tokens, or write authority, it separates untrusted input and code from privileged execution and grants only required permissions.
+- Tracked executable artifacts identify their source, purpose, update path, and review or reproduction method.
 
 Not required by default:
 
@@ -75,6 +77,7 @@ Required gates:
 - A code of conduct or governing community conduct policy is discoverable when community interaction occurs.
 - Agent instructions cover the applicable issue, change, test, documentation, generated-file, and review workflow.
 - Agents can identify work that requires prior discussion or specialist approval and can route changes to the correct owner.
+- Claimed merge controls enforce the intended change route and required checks. Approval covers the latest reviewable change when independent review applies.
 
 Useful but not universal:
 
@@ -100,9 +103,11 @@ Required gates:
 - Component ownership becomes scoped when a flat roster no longer routes review well.
 - Support routes distinguish questions, defects, proposals, and incidents.
 - Dependency acceptance and update responsibility are defined.
+- The project defines how maintainers learn about vulnerable dependencies and handle updates that cannot be accepted promptly.
 - Contributor and operator documentation has an owned publication path.
 - Component-scoped agent instructions refine one canonical authority without contradiction.
 - Automated agents have named owners, bounded roles, identities, credential scopes, generated-source boundaries, and escalation or disable paths.
+- Privileged maintainer, automation, and release identities have proportional authentication and account-recovery controls when the hosting system supports them.
 
 Useful but context-dependent:
 
@@ -124,6 +129,7 @@ Required gates apply only to relevant project shapes:
 - Incident, rollback, and upgrade or downgrade responsibilities are documented.
 - Important data has a tested backup, isolated restore, integrity check, and recovery path.
 - Release artifacts have provenance and verification appropriate to their distribution risk.
+- Consumers can follow a documented path to verify release signatures or provenance when those controls are claimed.
 - Supported release lines have backport and end-of-life rules.
 - Maintainer succession and sensitive-area ownership reduce single-person dependency.
 - Community triage and design processes remain usable at project scale.
@@ -131,6 +137,7 @@ Required gates apply only to relevant project shapes:
 - Production-affecting agents use least privilege, explicit approval gates, durable audit trails, non-personal identities, and credential lifecycle controls.
 - Operators can inspect, pause, disable, roll back, and recover agent activity, including partial, duplicate, retried, or stale work.
 - Untrusted content is separated from instruction authority, and rate, cost, retry, and false-positive limits are defined.
+- Privileged inbound callbacks authenticate their origin when the project uses them.
 
 Useful but context-dependent:
 
@@ -138,6 +145,7 @@ Useful but context-dependent:
 - Specialist review teams.
 - Security advisories and CVE coordination.
 - Software bills of materials.
+- Fuzzing or static analysis for relevant attack surfaces.
 - Recovery rehearsals.
 - Formal service objectives.
 - Public adoption evidence.

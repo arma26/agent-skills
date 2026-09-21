@@ -19,6 +19,7 @@ Apply this checklist after selecting a target milestone. Assess requirements at 
 - Does each unusual root file have an owner or documented consumer?
 - Do script names disclose their effects?
 - Do generated trees identify their source and edit rule?
+- Do tracked executables identify their source, purpose, rebuild or verification path, and update owner?
 - Are stale artifacts marked as historical before they become misleading?
 
 ## Contributor path
@@ -27,6 +28,7 @@ Apply this checklist after selecting a target milestone. Assess requirements at 
 - Is there one repository-owned setup path?
 - Do local checks correspond to automated checks?
 - Can contributors find component ownership and review expectations?
+- Do claimed merge controls cover required checks and the latest reviewable change?
 - Does the project state when an issue, proposal, or design record must precede implementation?
 
 ## Agent development
@@ -55,10 +57,12 @@ Apply this checklist after selecting a target milestone. Assess requirements at 
 
 ## Risk overlays
 
-- Security: Is the control proportional to actual exposure and authority?
+- Security: Are untrusted inputs and code separated from privileged automation, and are tokens least-privilege?
+- Security: Are privileged identities, vulnerability intake, and authenticated callbacks controlled in proportion to their authority?
 - Data continuity: Are source-of-truth, backup, restore, integrity, and rollback defined?
 - Operations: Are deployment ownership, inspection, incident, and rollback routes clear?
-- Supply chain: Can users identify, verify, and update published artifacts?
+- Supply chain: Can maintainers review and update build dependencies without losing reproducibility?
+- Supply chain: Can users relate published artifacts to reviewed source and perform the claimed verification?
 
 ## Prioritization
 

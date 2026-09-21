@@ -53,6 +53,7 @@ Only this file loads with the skill. Read each selected reference completely bef
 
 - For a README audit or user-documentation rewrite, read [README by example](references/readme-by-example.md) before judging the first-success path.
 - When repository behavior differs from ecosystem norms, read [convention drift](references/convention-drift.md) before classifying or recommending changes.
+- When the security or supply-chain overlay activates, read [security and supply-chain evidence](references/security-supply-chain-evidence.md). Use it to assess the relevant controls.
 - When important persistent data, synchronization, migration, replication, or recovery exists, read [data continuity](references/data-continuity.md) before assessing the overlay.
 - After the user accepts the optional PRR, read [production readiness review](references/production-readiness-review.md) before defining scope or a decision.
 
@@ -92,7 +93,7 @@ Identify:
 - source, generated, cached, temporary, and persistent boundaries.
 - human, agent, CI, VCS, and external-system authority boundaries.
 - accepted project risks and explicit non-goals.
-- evidence limits for this audit.
+- evidence limits for this audit, including settings that exist outside the repository.
 
 Use repository evidence before inference. When intent is unclear, infer the narrowest defensible target and label the inference.
 
@@ -213,6 +214,8 @@ Use this structure:
 
 In `milestone_summary`, include every milestone and its state. In `milestone_findings`, give each requirement a status, evidence, reader or maintainer effect, and smallest next improvement.
 
+For a finding with incomplete or disputed evidence, keep the observed evidence, evidence limit, and maintainer context separate. A maintainer explanation can support an exception. It cannot replace evidence that a control operates.
+
 Order recommendations by the next milestone gate. Put safety contradictions before maturity work. Do not recommend later-stage ceremony while a lower-stage user or contributor path remains broken.
 
 ### 12. Offer the production readiness extension
@@ -239,6 +242,8 @@ Prefer moving ambiguous material to a named archive over immediate deletion. Req
 - Prefer one canonical agent authority with thin tool-specific pointers over duplicated instruction sets.
 - Treat a work unit as one reviewable outcome with explicit acceptance and verification, not as an arbitrary quantity of changed files.
 - Treat CI as verification evidence, not as the source of intent or permission.
+- Prefer precise behavior observations over composite labels, badges, or external scores.
+- Treat a configured mechanism as evidence of intent. Confirm its operation before crediting an operating process.
 - Require explicit authority for agent actions that publish, deploy, message, bill, or otherwise change external state.
 - Prefer scoped ownership over an unexplained roster when several components exist.
 - Prefer explicit release and support authority over automation alone.

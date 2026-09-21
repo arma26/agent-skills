@@ -29,6 +29,14 @@ Investigate when you find:
 - a handoff that says checks passed without naming the command, scenario, result, or unverified surface.
 - instructions that let repository, issue, pull-request, log, or user content expand agent permissions.
 - automated agents that can push, merge, publish, message, deploy, or spend money without an explicit authority boundary and disable path.
+- a privileged workflow that interpolates issue, pull-request, branch, commit, or log content into executable scripts.
+- a privileged workflow that checks out or runs code from an untrusted change.
+- third-party workflow code or build images that use mutable identifiers without an integrity and update policy.
+- a generated executable with no identified source, rebuild path, verification method, or update owner.
+- a dependency update bot with no owner or response path for blocked updates.
+- release signatures or provenance with no documented consumer verification path.
+- a privileged webhook or callback with no origin-authentication mechanism.
+- an inaccessible forge or account setting reported as fulfilled instead of an evidence gap.
 
 For each pattern, find its owner, consumers, actual effects, and documentation before recommending a change.
 
@@ -76,7 +84,7 @@ Different tools can need adapter files or directory-scoped instructions. Prefer 
 
 ### Closed contribution model
 
-A project can reject external contributions while using internal coding agents. Audit the agent environment and authority contracts; mark public submission workflow requirements according to the actual contribution policy.
+A project can reject external contributions while using internal coding agents. Audit the agent environment and authority contracts. Apply submission requirements according to the contribution policy.
 
 ### Libraries, CLIs, services, and web applications
 
@@ -107,6 +115,9 @@ Avoid these unless evidence shows a concrete need:
 - requiring AI attribution when the project can instead state a deliberate no-attribution policy.
 - adding autonomous bots to demonstrate maturity when bounded human-invoked agents satisfy the project need.
 - creating several tool-specific instruction files when one canonical entry point is sufficient.
+- adding controls only to improve a badge or external score.
+- requiring fuzzing or static analysis without a relevant attack surface or an unresolved risk that the analysis addresses.
+- requiring independent review that a single-maintainer project cannot operate, unless the affected path carries exceptional risk.
 
 ## Erroneous audit practices
 
@@ -127,6 +138,10 @@ Avoid these unless evidence shows a concrete need:
 - Measuring work units by diff size while ignoring distinct outcomes, owners, permissions, or rollback paths.
 - Treating agent-to-agent delegation as new permission to mutate external systems.
 - Requiring production automation controls for a local coding assistant that has no production authority.
+- Treating a workflow file, dependency bot, security policy, signature, or badge as proof that its process operates.
+- Equating commit frequency or contributor-company diversity with project maturity.
+- Treating a hidden forge, webhook, or account setting as satisfied because the audit cannot inspect it.
+- Recommending dependency pinning without an owner and update path.
 
 ## Red flags that can cap maturity
 
@@ -144,6 +159,9 @@ Validate and report these before ordinary polish findings:
 - conflicting instruction files make the applicable authority or safe command path indeterminate.
 - the documented agent default can publish, merge, deploy, message, bill, or mutate external state without explicit approval.
 - an autonomous agent consumes untrusted content as instruction and has privileged external authority without containment or a disable path.
+- privileged automation executes untrusted code or interpolates untrusted content with access to secrets or write authority.
+- a distributed executable cannot be related to reviewed source or a reproducible, verifiable build.
+- privileged callbacks accept unauthenticated events that can change repository, release, deployment, or production state.
 
 ## Recommendation test
 
