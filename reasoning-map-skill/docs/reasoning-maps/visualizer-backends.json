@@ -1,0 +1,221 @@
+{
+  "schema_version": "0.1.0",
+  "graph_id": "reasoning-map.visualizer-backends",
+  "title": "Visualizer backend expansion",
+  "scope": "visualizer.backends",
+  "status": "active",
+  "related_graphs": [
+    "reasoning-map.repo-development"
+  ],
+  "nodes": [
+    {
+      "id": "problem.single-backend-limit",
+      "kind": "problem",
+      "title": "A DOT-only visualizer limits portability and quick inspection",
+      "summary": "The graph contract already supported multiple render targets, but the CLI only exposed Graphviz output.",
+      "status": "resolved",
+      "confidence": 0.95,
+      "importance": 0.9,
+      "completeness": 0.94,
+      "visibility": "normal",
+      "relevance": 0.92,
+      "deficiencies": []
+    },
+    {
+      "id": "constraint.shared-selection-semantics",
+      "kind": "constraint",
+      "title": "All backends must preserve the same selection and warning semantics",
+      "summary": "Filtering, focus depth, and dangling-edge reporting belong to the shared pipeline rather than any exporter.",
+      "status": "active",
+      "confidence": 0.97,
+      "importance": 0.95,
+      "completeness": 0.92,
+      "visibility": "normal",
+      "relevance": 0.95,
+      "deficiencies": []
+    },
+    {
+      "id": "decision.shared-render-dispatch",
+      "kind": "decision",
+      "title": "Dispatch one render model into multiple emitters",
+      "summary": "The CLI should build one selected render graph and then emit DOT, Mermaid, or terminal output from that shared model.",
+      "status": "resolved",
+      "confidence": 0.97,
+      "importance": 0.96,
+      "completeness": 0.95,
+      "visibility": "normal",
+      "relevance": 0.96,
+      "deficiencies": []
+    },
+    {
+      "id": "option.mermaid-backend",
+      "kind": "option",
+      "title": "Add Mermaid as the portability export",
+      "summary": "Mermaid trades layout power for easier embedding in markdown-oriented contexts.",
+      "status": "resolved",
+      "confidence": 0.91,
+      "importance": 0.76,
+      "completeness": 0.91,
+      "visibility": "normal",
+      "relevance": 0.79,
+      "deficiencies": []
+    },
+    {
+      "id": "option.terminal-backend",
+      "kind": "option",
+      "title": "Add a terminal inspection backend instead of ASCII graph art",
+      "summary": "A grouped textual inspection view is easier to parse in an agent TUI and less fragile than spatial rendering.",
+      "status": "resolved",
+      "confidence": 0.95,
+      "importance": 0.8,
+      "completeness": 0.94,
+      "visibility": "normal",
+      "relevance": 0.83,
+      "deficiencies": []
+    },
+    {
+      "id": "claim.shared-semantics-reduce-drift",
+      "kind": "claim",
+      "role": "support",
+      "assertion_kind": "inference",
+      "title": "Shared render semantics reduce backend drift",
+      "summary": "Centralizing layer and display-class logic avoids each exporter inventing its own interpretation of the graph.",
+      "status": "resolved",
+      "confidence": 0.93,
+      "importance": 0.84,
+      "completeness": 0.89,
+      "visibility": "normal",
+      "relevance": 0.85,
+      "deficiencies": []
+    },
+    {
+      "id": "decision.batch-format-support",
+      "kind": "decision",
+      "title": "Keep batch rendering dry-run by default while making output suffix format-aware",
+      "summary": "Directory rendering should remain safe by default and choose `.dot`, `.mermaid`, or `.terminal` based on the selected backend.",
+      "status": "resolved",
+      "confidence": 0.96,
+      "importance": 0.82,
+      "completeness": 0.93,
+      "visibility": "normal",
+      "relevance": 0.84,
+      "deficiencies": []
+    },
+    {
+      "id": "gap.visual-style-coverage",
+      "kind": "gap",
+      "title": "Cross-backend visual style parity is still intentionally incomplete",
+      "summary": "DOT remains the richest backend, while Mermaid and terminal prioritize portability and inspection rather than equivalent styling.",
+      "status": "active",
+      "confidence": 0.9,
+      "importance": 0.66,
+      "completeness": 0.52,
+      "visibility": "normal",
+      "relevance": 0.69,
+      "deficiencies": []
+    },
+    {
+      "id": "gap.repo-main-merge",
+      "kind": "gap",
+      "title": "The completed backend work is not merged into main from this environment",
+      "summary": "The branch is ahead, but the final fast-forward ref update is blocked by sandbox policy rather than repository conflicts.",
+      "status": "active",
+      "confidence": 0.94,
+      "importance": 0.72,
+      "completeness": 0.46,
+      "visibility": "normal",
+      "relevance": 0.73,
+      "deficiencies": ["investigation_required"]
+    }
+  ],
+  "edges": [
+    {
+      "id": "edge.problem-raises-dispatch",
+      "from": "problem.single-backend-limit",
+      "to": "decision.shared-render-dispatch",
+      "type": "raises",
+      "status": "resolved",
+      "confidence": 0.95,
+      "importance": 0.88,
+      "visibility": "normal",
+      "relevance": 0.9
+    },
+    {
+      "id": "edge.constraint-depends-on-dispatch",
+      "from": "constraint.shared-selection-semantics",
+      "to": "decision.shared-render-dispatch",
+      "type": "depends_on",
+      "status": "active",
+      "confidence": 0.96,
+      "importance": 0.92,
+      "visibility": "normal",
+      "relevance": 0.93
+    },
+    {
+      "id": "edge.shared-semantics-supports-dispatch",
+      "from": "claim.shared-semantics-reduce-drift",
+      "to": "decision.shared-render-dispatch",
+      "type": "supports",
+      "status": "resolved",
+      "confidence": 0.93,
+      "importance": 0.82,
+      "visibility": "normal",
+      "relevance": 0.84
+    },
+    {
+      "id": "edge.mermaid-depends-on-dispatch",
+      "from": "option.mermaid-backend",
+      "to": "decision.shared-render-dispatch",
+      "type": "depends_on",
+      "status": "resolved",
+      "confidence": 0.9,
+      "importance": 0.73,
+      "visibility": "normal",
+      "relevance": 0.76
+    },
+    {
+      "id": "edge.terminal-depends-on-dispatch",
+      "from": "option.terminal-backend",
+      "to": "decision.shared-render-dispatch",
+      "type": "depends_on",
+      "status": "resolved",
+      "confidence": 0.95,
+      "importance": 0.76,
+      "visibility": "normal",
+      "relevance": 0.79
+    },
+    {
+      "id": "edge.batch-depends-on-dispatch",
+      "from": "decision.batch-format-support",
+      "to": "decision.shared-render-dispatch",
+      "type": "depends_on",
+      "status": "resolved",
+      "confidence": 0.95,
+      "importance": 0.8,
+      "visibility": "normal",
+      "relevance": 0.82
+    },
+    {
+      "id": "edge.style-gap-challenges-mermaid",
+      "from": "gap.visual-style-coverage",
+      "to": "option.mermaid-backend",
+      "type": "challenges",
+      "status": "active",
+      "confidence": 0.78,
+      "importance": 0.63,
+      "visibility": "normal",
+      "relevance": 0.65
+    },
+    {
+      "id": "edge.merge-gap-raises-dispatch",
+      "from": "decision.shared-render-dispatch",
+      "to": "gap.repo-main-merge",
+      "type": "leads_to",
+      "status": "active",
+      "confidence": 0.72,
+      "importance": 0.64,
+      "visibility": "normal",
+      "relevance": 0.66
+    }
+  ]
+}

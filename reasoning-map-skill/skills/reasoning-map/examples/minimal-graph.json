@@ -1,0 +1,124 @@
+{
+  "schema_version": "0.1.0",
+  "graph_id": "reasoning-map.retry-storms",
+  "title": "Investigate retry storms",
+  "scope": "service.retry-policy",
+  "status": "active",
+  "related_graphs": [],
+  "nodes": [
+    {
+      "id": "problem.retry-storms",
+      "kind": "problem",
+      "title": "Retry storms during upstream degradation",
+      "summary": "Clients amplify load during intermittent latency spikes.",
+      "status": "active",
+      "confidence": 0.82,
+      "importance": 0.94,
+      "completeness": 0.66,
+      "visibility": "normal",
+      "relevance": 0.92,
+      "deficiencies": []
+    },
+    {
+      "id": "claim.latency-spike-observed",
+      "kind": "claim",
+      "role": "observation",
+      "assertion_kind": "observation",
+      "title": "Latency spikes precede retry bursts",
+      "summary": "Operational traces show retry volume rising immediately after latency spikes.",
+      "status": "active",
+      "confidence": 0.76,
+      "importance": 0.74,
+      "completeness": 0.62,
+      "visibility": "normal",
+      "relevance": 0.71,
+      "deficiencies": []
+    },
+    {
+      "id": "problem.backoff-clustering",
+      "kind": "problem",
+      "role": "subproblem",
+      "title": "Backoff policy clusters retries too early",
+      "summary": "Retry spacing is too tight under partial failure.",
+      "status": "active",
+      "confidence": 0.54,
+      "importance": 0.78,
+      "completeness": 0.41,
+      "visibility": "normal",
+      "relevance": 0.77,
+      "deficiencies": ["missing_evidence", "untested_assumption"]
+    },
+    {
+      "id": "decision.safer-retry-defaults",
+      "kind": "decision",
+      "title": "Add jitter and lower retry ceiling",
+      "summary": "Choose safer defaults while collecting endpoint-level metrics.",
+      "status": "active",
+      "confidence": 0.63,
+      "importance": 0.88,
+      "completeness": 0.57,
+      "visibility": "normal",
+      "relevance": 0.86,
+      "deficiencies": ["investigation_required"]
+    },
+    {
+      "id": "gap.retry-distribution-metrics",
+      "kind": "gap",
+      "title": "Need per-endpoint retry distribution",
+      "summary": "Current metrics do not show which endpoints dominate retries.",
+      "status": "active",
+      "confidence": 0.91,
+      "importance": 0.72,
+      "completeness": 0.24,
+      "visibility": "normal",
+      "relevance": 0.68,
+      "deficiencies": []
+    }
+  ],
+  "edges": [
+    {
+      "id": "edge.cause.1",
+      "from": "problem.backoff-clustering",
+      "to": "problem.retry-storms",
+      "type": "causes",
+      "status": "active",
+      "confidence": 0.54,
+      "importance": 0.78,
+      "visibility": "normal",
+      "relevance": 0.73
+    },
+    {
+      "id": "edge.support.1",
+      "from": "claim.latency-spike-observed",
+      "to": "problem.backoff-clustering",
+      "type": "supports",
+      "status": "active",
+      "confidence": 0.76,
+      "importance": 0.74,
+      "visibility": "normal",
+      "relevance": 0.7
+    },
+    {
+      "id": "edge.address.1",
+      "from": "decision.safer-retry-defaults",
+      "to": "problem.backoff-clustering",
+      "type": "addresses",
+      "status": "active",
+      "confidence": 0.63,
+      "importance": 0.88,
+      "visibility": "normal",
+      "relevance": 0.83
+    },
+    {
+      "id": "edge.challenge.1",
+      "from": "gap.retry-distribution-metrics",
+      "to": "decision.safer-retry-defaults",
+      "type": "challenges",
+      "status": "active",
+      "confidence": 0.91,
+      "importance": 0.72,
+      "visibility": "normal",
+      "relevance": 0.67
+    }
+  ]
+}

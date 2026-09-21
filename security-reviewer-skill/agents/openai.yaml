@@ -1,0 +1,4 @@
+interface:
+  display_name: "Security Reviewer"
+  short_description: "Review architectural security surface and drift"
+  default_prompt: "Use $security-reviewer to review this design or implementation for unnecessary security surface and structural risk."

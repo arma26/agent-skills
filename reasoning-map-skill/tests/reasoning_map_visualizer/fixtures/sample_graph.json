@@ -1,0 +1,97 @@
+{
+  "graph_id": "sample.reasoning-map",
+  "title": "Sample reasoning map for visualizer tests",
+  "nodes": [
+    {
+      "id": "problem.root",
+      "kind": "problem",
+      "title": "Root problem",
+      "summary": "Primary issue under investigation.",
+      "status": "active",
+      "visibility": "normal",
+      "deficiencies": []
+    },
+    {
+      "id": "decision.primary",
+      "kind": "decision",
+      "title": "Primary decision",
+      "summary": "Current preferred approach.",
+      "status": "active",
+      "visibility": "normal",
+      "deficiencies": []
+    },
+    {
+      "id": "claim.muted",
+      "kind": "claim",
+      "title": "Muted claim",
+      "summary": "Previously considered but suppressed by default.",
+      "status": "active",
+      "visibility": "muted",
+      "deficiencies": [
+        "missing_evidence"
+      ]
+    },
+    {
+      "id": "risk.hidden",
+      "kind": "risk",
+      "title": "Hidden risk",
+      "summary": "Only visible when explicitly requested.",
+      "status": "active",
+      "visibility": "hidden",
+      "deficiencies": [
+        "investigation_required"
+      ]
+    },
+    {
+      "id": "option.rejected",
+      "kind": "option",
+      "title": "Rejected option",
+      "summary": "No longer part of the current reasoning surface.",
+      "status": "rejected",
+      "visibility": "normal",
+      "deficiencies": []
+    }
+  ],
+  "edges": [
+    {
+      "id": "edge.problem-decision",
+      "from": "decision.primary",
+      "to": "problem.root",
+      "type": "addresses",
+      "status": "active",
+      "visibility": "normal"
+    },
+    {
+      "id": "edge.decision-muted",
+      "from": "claim.muted",
+      "to": "decision.primary",
+      "type": "supports",
+      "status": "active",
+      "visibility": "muted"
+    },
+    {
+      "id": "edge.hidden-problem",
+      "from": "risk.hidden",
+      "to": "problem.root",
+      "type": "challenges",
+      "status": "active",
+      "visibility": "hidden"
+    },
+    {
+      "id": "edge.rejected-problem",
+      "from": "option.rejected",
+      "to": "problem.root",
+      "type": "depends_on",
+      "status": "rejected",
+      "visibility": "normal"
+    },
+    {
+      "id": "edge.dangling",
+      "from": "claim.dangling",
+      "to": "problem.root",
+      "type": "supports",
+      "status": "active",
+      "visibility": "normal"
+    }
+  ]
+}

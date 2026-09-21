@@ -1,0 +1,4 @@
+interface:
+  display_name: "Open Source Polish"
+  short_description: "Turn prototypes into contributor-ready repos"
+  default_prompt: "Use $open-source-polish to audit this project for release readiness, contributor friction, and convention drift."

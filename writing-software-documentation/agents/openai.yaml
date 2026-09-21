@@ -1,0 +1,4 @@
+interface:
+  display_name: "Software Documentation Writer"
+  short_description: "Write usable, evidence-based software documentation"
+  default_prompt: "Use $writing-software-documentation to create or revise user-focused software documentation with clear concepts, examples, and reference links."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Reasoning Map"
+  short_description: "Structure and stress-test reasoning graphs"
+  default_prompt: "Use $reasoning-map to map this problem, test assumptions, and surface reasoning gaps."
