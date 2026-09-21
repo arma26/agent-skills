@@ -1,265 +1,220 @@
 ---
 name: open-source-polish
 description: >-
-  Improve functional codebases for public contribution and production release.
-  Use for prototype polish, production readiness reviews, open-source preparation,
-  contributor friction, documentation drift, ecosystem conventions, stray
-  artifacts, runtime inspection, and data recovery.
+  Audit or improve a repository through stage-appropriate open-source maturity milestones.
+  Use for prototype release, contributor readiness, public-project polish, governance, and release or production readiness reviews.
+  Also use for documentation drift, convention drift, artifact safety, operational clarity, or data recovery readiness.
 ---
 
-# Open Source Polish
+# Open source polish
 
-## Overview
+## Purpose
 
-Treat the repository as a public interface. Optimize for reader attention, contributor trust, transferable ecosystem understanding, and predictable inspection when behavior fails.
+Treat the repository as a public interface and a project operating system. Assess the maturity the project needs now. Do not grade a prototype against the obligations of an established project.
 
-Assume the user may have little or no experience preparing software for outside contributors. Guide the work from prototype reality to mature project shape without silently destroying ambiguous artifacts.
+Separate two dimensions:
 
-## Operating Modes
+- Maturity is the project's current and intended operating stage.
+- Risk is what the project handles, regardless of age.
 
-Choose one mode early and say which mode you are using.
+A prototype does not need formal governance, a full security contract, or a production release process. A prototype that handles credentials, untrusted code, public traffic, or important data still needs controls for those risks.
+
+Assume agents write or review changes from M0 unless the repository explicitly prohibits agent use. Keep the core environment and work contracts early; defer autonomous and production authority until those capabilities exist.
+
+## Operating modes
+
+Choose one mode and state it before the audit.
 
 ### `prototype-polish`
 
-Use near release, handoff, publication, or outside review.
+Use for release, handoff, publication, outside review, or a full maturity assessment.
 
-Run the full pass:
-
-- first-impression audit
-- structure and artifact audit
-- convention drift audit
-- contributor path audit
-- runtime clarity audit
-- failure handling audit
-- data continuity audit when important data exists
-- documentation reconciliation
+Assess every milestone. Mark requirements beyond the target as `not_due`, not as failures. Apply all triggered risk overlays.
 
 ### `continuous-polish`
 
-Use during development to catch drift before it accumulates.
+Use during development to detect regression within the current milestone.
 
-Run a lighter pass focused on:
+Focus on changed interfaces, documentation drift, artifact growth, contributor friction, conventions, inspection points, and triggered risk overlays. Do not reopen settled higher-stage questions without new evidence.
 
-- README and example drift
-- growing repo clutter
-- convention drift
-- contributor setup friction
-- logging, exception, and inspection-point regressions
+## Required references
 
-### `production-readiness`
+Read these before auditing:
 
-Use before a production release or a formal production readiness review (PRR).
+- [project type matrix](references/project-type-matrix.md)
+- [maturity milestones](references/maturity-milestones.md)
+- [agent development baseline](references/agent-development-baseline.md)
+- [polish checklist](references/polish-checklist.md)
+- [audit field guide](references/audit-field-guide.md)
 
-Run `prototype-polish`, then read:
+Read these when their conditions apply:
 
-- [references/production-release-rubric.md](references/production-release-rubric.md)
-- [assets/production-readiness-review.md](assets/production-readiness-review.md)
+- If README or user documentation is central, read [README by example](references/readme-by-example.md).
+- If the repository differs from ecosystem norms, read [convention drift](references/convention-drift.md).
+- If a data-continuity overlay triggers, read [data continuity](references/data-continuity.md).
+- If the user accepts the Production Readiness Review extension, read [production readiness review](references/production-readiness-review.md).
 
-Copy the template into the target repository. Complete it from repository and operational evidence. End with an explicit release decision.
+## Audit workflow
 
-## First Questions
-
-Answer these before recommending cleanup:
-
-- what kind of project is this
-- what would a stranger try in the first two minutes
-- what is the smallest successful example
-- what commands should be copy-pasteable
-- what local behaviors differ from ecosystem norms
-- what files or scripts have unclear ownership or integration
-- what would block a first external contribution
-- does the project handle important persistent data
-
-## Workflow
-
-### 1. Orient
+### 1. Establish context
 
 Identify:
 
-- project type
-- language and tooling layer
-- public entrypoints
-- test and verification path
-- important state or data boundaries
-- likely first-impression path
+- project type and primary audience.
+- current status and intended next release or handoff.
+- public entry points and smallest successful use.
+- contributor entry point and verification path.
+- agent instruction entry point, environment contract, and work-unit contract.
+- source, generated, cached, temporary, and persistent boundaries.
+- human, agent, CI, VCS, and external-system authority boundaries.
+- accepted project risks and explicit non-goals.
+- evidence limits for this audit.
 
-Then read:
+Use repository evidence before inference. When intent is unclear, infer the narrowest defensible target and label the inference.
 
-- [references/project-type-matrix.md](references/project-type-matrix.md)
-- [references/polish-checklist.md](references/polish-checklist.md)
+### 2. Select the target milestone
 
-If the README or docs are central to the task, also read:
+Use the author's stated goal when available. Otherwise use public claims and operating behavior.
 
-- [references/readme-by-example.md](references/readme-by-example.md)
+Do not infer a high target only because advanced files exist. A copied security policy, CI workflow, or governance template is not proof that the process operates.
 
-If the repo appears unusual for its ecosystem, also read:
+### 3. Activate risk overlays
 
-- [references/convention-drift.md](references/convention-drift.md)
+Apply an overlay at any milestone when its trigger exists:
 
-If the project handles important data, also read:
+- Security: credentials, private data, untrusted input or code, privileged access, network exposure, or distributed executables.
+- Data continuity: important persistent data, synchronization, migration, replication, or state that cannot be recreated safely.
+- Operations: a public service, production deployment, scheduled jobs, on-call expectations, or external integrations.
+- Supply chain: published packages, binaries, images, installers, plugins, or generated release artifacts.
 
-- [references/data-continuity.md](references/data-continuity.md)
+Use proportional requirements. For example, a public prototype that accepts vulnerability reports needs a safe contact route. It does not automatically need response-time promises, supported-version tables, or a security response team.
 
-### 2. Audit First Impressions
+### 4. Audit milestone gates
 
-Check whether the repo earns trust quickly:
+Assess every requirement at or below the target milestone. For later milestones, record only clear strengths or dangerous contradictions. Mark the remainder `not_due`.
 
-- README explains the project in one short pass
-- setup path is real
-- examples are copy-pasteable
-- root-level layout feels intentional
-- current status is honest
+Use these statuses:
 
-Prioritize attention economy over exhaustive prose. Show the smallest useful path first.
+- `fulfilled`: repository evidence satisfies the requirement.
+- `partial`: useful evidence exists, but a material gap remains.
+- `unmet`: the target milestone requires it and evidence is absent or contradictory.
+- `not_applicable`: the project shape makes the requirement irrelevant. State why.
+- `not_due`: the requirement belongs to a later milestone and no overlay activates it.
+- `evidence_gap`: the audit scope cannot establish the answer.
 
-### 3. Audit Structure And Artifacts
+The current milestone is the highest milestone whose required gates are fulfilled or explicitly not applicable. A serious safety contradiction can cap the result. Examples include a destructive script presented as setup, a published secret, or a restore procedure with an unmarked destructive default.
 
-Map:
+### 5. Inspect the public interface
 
-- source
-- tests
-- docs
-- scripts
-- configs
-- fixtures
-- generated output
-- temporary residue
-- files with unclear purpose
+Check whether a new reader can:
 
-Treat dangling artifacts as hypotheses. Do not assume they are safe to remove.
+- understand the project's purpose and status.
+- reach the smallest useful result.
+- predict the result of documented commands.
+- find the correct support or contribution route.
+- distinguish required setup from optional or advanced setup.
 
-### 4. Audit Convention Drift
+Prefer a short successful path over exhaustive front-page prose.
 
-Compare the repo against ecosystem expectations.
+### 6. Inspect the project operating system
 
-Warn explicitly when the project forces a newcomer to learn local conventions before they can apply prior knowledge from similar projects.
+At the applicable milestone, inspect:
 
-For each meaningful deviation, state:
+- ownership and review boundaries.
+- change intake and design-decision thresholds.
+- local and automated verification parity.
+- governance and maintainer lifecycle.
+- release ownership, support boundaries, and backports.
+- community request routing.
+- documentation source and publication boundaries.
 
-- expected standard
-- current behavior
-- newcomer cost
-- whether to remove or justify the deviation
+Distinguish policy from mechanism. A policy is credible when the repository shows who owns it, how it operates, and where results appear.
 
-### 5. Audit Contribution Friction
+### 7. Inspect agent development
 
-Check whether a stranger can:
+Assess the agent-development requirements for every milestone at or below the target. Agent instructions are an M0 baseline when agents write code; autonomy and production authority are later-stage concerns.
 
-- set up the project
-- run the project
-- run tests
-- identify a small safe change
-- understand where to inspect failures
+Check the repository-owned instruction authority, reproducible environment, acceptable work unit, work-request and handoff formats, verification contract, identity and secret boundaries, and approval gates for external state changes.
 
-Treat confusion about workflow, file ownership, hidden state, or setup as contributor friction.
+Treat tool-specific instruction files as adapters to one canonical authority. Flag conflicting copies, personal-machine assumptions, unbounded work requests, unverifiable completion claims, and permissions inferred from issue or repository content.
 
-### 6. Audit Runtime And Failure Clarity
+### 8. Inspect artifacts and conventions
 
-Inspect:
+Map source, tests, docs, scripts, configuration, fixtures, generated output, caches, temporary residue, and archives.
 
-- main inputs and outputs
-- state ownership and boundaries
-- side effects
-- boundary logging
-- exception quality
-- predictable inspection points
+Treat ambiguous artifacts as hypotheses. Do not recommend removal until ownership and consumers are checked.
 
-Warn when telemetry or external dashboards are required just to understand normal local behavior.
+For each meaningful convention deviation, state:
 
-### 7. Audit Data Continuity When Needed
+- expected ecosystem convention.
+- current behavior.
+- newcomer cost.
+- demonstrated benefit.
+- whether to converge, isolate, or document the deviation.
 
-If important data exists, inspect:
+### 9. Inspect clarity, failure, and continuity
 
-- source-of-truth vs cache vs derived state
-- lifecycle of important data
-- backup and restore paths
-- bad-data detection
-- repair, replay, or quarantine paths
-- maintenance scripts and their safety posture
+Within audit scope, identify primary inputs, outputs, side effects, state owners, external boundaries, inspection points, and failure routes.
 
-Require recovery-oriented documentation when data continuity matters.
+Apply recovery requirements only when the data-continuity overlay triggers. Separate source-of-truth data from cache, derived state, and disposable development data.
 
-### 8. Reconcile Documentation
+### 10. Reconcile documentation
 
-Compare docs against code, scripts, and configuration.
+Compare documentation with scripts, configuration, templates, and automation definitions. Flag drifted commands, hidden prerequisites, conflicting routes, stale status claims, generated-file ambiguity, and unsupported recovery claims.
 
-Flag:
+### 11. Produce the maturity report
 
-- drifted commands
-- hidden prerequisites
-- stale claims
-- examples that are not the easiest path
-- missing recovery guidance for data-bearing systems
+Use this structure:
 
-### 9. Propose Cleanup
-
-Produce a structured proposal with these sections:
-
-- `first_impression_findings`
+- `audit_context`
+- `target_milestone`
+- `risk_overlays`
+- `milestone_summary`
+- `milestone_findings`
+- `agent_development_findings`
+- `cross_cutting_red_flags`
 - `convention_drift_warnings`
 - `artifact_candidates`
 - `documentation_drift_findings`
-- `contributor_friction_findings`
-- `runtime_clarity_findings`
-- `failure_handling_findings`
-- `recommended_cleanup_sequence`
+- `recommended_improvement_sequence`
+- `evidence_limits`
 
-Add `data_continuity_findings` when the project handles important data.
+In `milestone_summary`, show every milestone and its state. In `milestone_findings`, give each requirement a status, evidence, reader or maintainer effect, and smallest next improvement.
 
-For `production-readiness`, also provide:
+Order recommendations by the next milestone gate. Put safety contradictions before maturity work. Do not recommend later-stage ceremony while a lower-stage user or contributor path remains broken.
 
-- the completed PRR location
-- the release decision
-- unresolved blockers and accepted risks
-- the owner and due date for each follow-up
+### 12. Offer the production readiness extension
 
-### 10. Gate State-Changing Cleanup
+End every completed maturity audit with this optional next step:
 
-Require explicit approval before:
+> Optional extension: I can run a Production Readiness Review for a defined deployment, release, or operating environment.
 
-- moving files
-- removing files
-- normalizing directory layout
-- rewriting large documentation surfaces
-- changing contributor workflows
-- introducing or changing state-modifying scripts
+Do not run the extension without user acceptance. Do not count it as due or missing in the maturity report. If the project has no production use, keep the offer available for a future production scope.
 
-Prefer moving over deleting when cleanup is needed.
+### 13. Gate changes
 
-If a command or script modifies external or persistent state, require `--dry-run` and default to safe behavior unless the repo already defines a different doctrine.
+Require explicit approval before moving or removing files, normalizing layout, rewriting large documentation areas, changing contributor workflows, or adding state-changing scripts.
 
-## Judgment Rules
+Prefer moving ambiguous material to a named archive over immediate deletion. Require safe target checks and an explicit destructive flag for state-changing maintenance tools. Use `--dry-run` by default when the operation can provide a truthful preview.
 
-- Prefer example-first documentation over concept-first exposition.
-- Prefer transferable conventions over repo-local quirks.
-- Prefer obvious entrypoints over clever layouts.
-- Prefer understandable boundaries over hidden state.
-- Prefer useful inspection points over noisy telemetry.
-- Prefer explicit recovery procedures over implied operator knowledge.
-- Prefer a small number of high-value recommendations over a long cosmetic list.
+## Judgment rules
 
-## Anti-Patterns
+- Treat maturity as cumulative capability, not a documentation score.
+- Treat risk overlays as independent of maturity.
+- Prefer observed mechanisms over policy-shaped files.
+- Prefer transferable ecosystem conventions over private maintainer habits.
+- Prefer repository-owned commands over required shell aliases.
+- Prefer one canonical agent authority with thin tool-specific pointers over duplicated instruction sets.
+- Treat a work unit as one reviewable outcome with explicit acceptance and verification, not as an arbitrary quantity of changed files.
+- Treat CI as verification evidence, not as the source of intent or permission.
+- Require explicit authority for agent actions that publish, deploy, message, bill, or otherwise change external state.
+- Prefer scoped ownership over an unexplained roster when several components exist.
+- Prefer explicit release and support authority over automation alone.
+- Prefer useful local inspection points over mandatory external telemetry.
+- Prefer recovery rehearsal and verification over backup commands alone.
+- Preserve intentional deviations when they have an owner, a benefit, and adjacent documentation.
+- Recommend the smallest change that unlocks the next milestone.
 
-Treat these as maturity warnings:
+## Output style
 
-- long README prose before the first runnable example
-- mystery files or scripts at repo root
-- setup docs that require interpretation instead of copy-paste
-- swallowed exceptions or generic failures without context
-- excessive logs that still do not reveal what failed
-- machine-local paths or assumptions
-- custom wrappers that hide ordinary ecosystem commands
-- important data without backup or restore guidance
-
-## Output Style
-
-Be direct. Explain why each finding matters to a newcomer.
-
-When possible, tie findings to one of these pressures:
-
-- trust
-- attention cost
-- convention drift
-- contributor activation energy
-- runtime opacity
-- recovery risk
+Be direct. Explain why each gap matters at the target milestone. Separate missing maturity from triggered risk. Use repository-relative evidence. Do not manufacture findings to fill every category.

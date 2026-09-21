@@ -1,56 +1,72 @@
-# Polish Checklist
+# Polish checklist
 
-## Goal
+## Use
 
-Run a compact maturity audit that favors the most trust-breaking issues first.
+Apply this checklist after selecting a target milestone. Assess requirements at or below that target. Apply triggered risk overlays at every stage.
 
-## First Impression
+## Public interface
 
-- Is the project value obvious quickly?
+- Is the purpose obvious?
 - Is the status honest?
-- Is the shortest run path visible?
-- Does the root feel intentional?
+- Is the smallest useful path visible and copy-pasteable?
+- Does the documented result include a verification step?
+- Are required and optional setup separate?
+- Do support, issue, discussion, and security routes agree?
 
-## Structure
+## Structure and artifacts
 
-- Can source, tests, docs, scripts, configs, fixtures, and generated files be distinguished quickly?
-- Do top-level files have obvious purpose?
-- Do any files appear orphaned or ambiguous?
+- Can readers distinguish source, tests, docs, scripts, configuration, fixtures, generated files, caches, and archives?
+- Does each unusual root file have an owner or documented consumer?
+- Do script names disclose their effects?
+- Do generated trees identify their source and edit rule?
+- Are stale artifacts marked as historical before they become misleading?
 
-## Contributor Path
+## Contributor path
 
-- Is setup easy to follow?
-- Is there one obvious test path?
-- Can a newcomer identify a small safe change?
-- Are local assumptions minimized?
+- Can a contributor find wanted work before investing in setup?
+- Is there one repository-owned setup path?
+- Do local checks correspond to automated checks?
+- Can contributors find component ownership and review expectations?
+- Does the project state when an issue, proposal, or design record must precede implementation?
 
-## Runtime Clarity
+## Agent development
 
-- Are the main inputs and outputs discoverable?
-- Are state boundaries explicit?
-- Do logs help inspection?
-- Are external integrations visible at their boundaries?
+- Is there one canonical repository-owned instruction authority with explicit precedence?
+- Can an agent establish the supported toolchain, writable boundaries, identity, credentials, setup side effects, cleanup, and smallest validation path without private context?
+- Does one work unit represent one reviewable outcome with explicit acceptance and verification?
+- Do work requests and handoffs preserve scope, authority, observed evidence, unresolved risk, and the next owner?
+- Are human, agent, CI, VCS, and external-system responsibilities distinct?
+- At later milestones, do automated agents have bounded roles, non-personal identities, owners, disable paths, and auditable production controls?
 
-## Failure Clarity
+## Project operating system
 
-- Do errors fail with enough context?
-- Are exceptions swallowed?
-- Is there a predictable place to look first when behavior goes wrong?
+- Who decides, reviews, merges, releases, supports, and responds to incidents?
+- How does the project add, remove, and replace maintainers when its target milestone requires governance?
+- Where are decisions and release results recorded?
+- Does release automation have a documented owner and policy?
+- Do documentation sources, generated output, and publication jobs have clear boundaries?
 
-## Convention Leverage
+## Runtime and failure clarity
 
-- Can ecosystem knowledge transfer immediately?
-- Which local conventions need justification?
+- Are main inputs, outputs, state owners, and side effects discoverable at the applicable stage?
+- Is there a predictable first inspection point for each major component?
+- Do errors contain context that helps the intended reader act?
+- Can local behavior be understood without external dashboards?
 
-## Data Continuity
+## Risk overlays
 
-Apply only when important persistent data exists.
+- Security: Is the control proportional to actual exposure and authority?
+- Data continuity: Are source-of-truth, backup, restore, integrity, and rollback defined?
+- Operations: Are deployment ownership, inspection, incident, and rollback routes clear?
+- Supply chain: Can users identify, verify, and update published artifacts?
 
-- Is source-of-truth state identified?
-- Are backup and restore procedures documented?
-- Can bad data be detected and recovered from?
-- Are maintenance scripts discoverable and safe?
+## Prioritization
 
-## Prioritization Rule
+Apply this order:
 
-Prioritize findings that break trust or waste newcomer attention before cosmetic cleanup.
+1. Active safety contradiction.
+2. Unmet gate in the current milestone.
+3. Unmet gate in the target milestone.
+4. Convention or documentation drift that blocks those gates.
+5. Later-stage improvement.
+6. Cosmetic cleanup.
