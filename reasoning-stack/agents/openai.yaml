@@ -1,0 +1,4 @@
+interface:
+  display_name: "Reasoning Stack"
+  short_description: "Transfer mapped reasoning into bounded subagent work"
+  default_prompt: "Use $reasoning-stack to create a revisioned reasoning-map handoff, dispatch the bounded assignment, review closure, and merge durable evidence back."

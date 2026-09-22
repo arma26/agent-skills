@@ -14,10 +14,13 @@ from pathlib import Path
 
 ALLOWED_FRONTMATTER_KEYS = {
     "allowed-tools",
+    "author",
     "description",
     "license",
     "metadata",
     "name",
+    "platforms",
+    "version",
 }
 EXCLUDED_DIRECTORIES = {".git", ".worktrees", "__pycache__"}
 FRONTMATTER_KEY = re.compile(r"^([a-zA-Z][a-zA-Z0-9_-]*):(?:\s*(.*))?$")

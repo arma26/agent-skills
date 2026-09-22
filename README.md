@@ -20,10 +20,10 @@ mise install python@3.14.0
 mise exec -- python scripts/validate.py
 ```
 
-The command validates all four skill packages. It also runs the validator and reasoning-map visualizer tests.
+The command validates every discovered skill package. It also runs the validator and reasoning-map visualizer tests.
 
 ```text
-Validation passed: 4 skills and 2 test suites.
+Validation passed: <count> skills and 2 test suites.
 ```
 
 The command returns a nonzero status when a package or test fails. Inspect the named skill file or failing test output first.
@@ -33,7 +33,9 @@ The command returns a nonzero status when a package or test fails. Inspect the n
 | Component | Entry point | Verification |
 | --- | --- | --- |
 | Open source polish | [Skill instructions](open-source-polish/SKILL.md) | Package validation |
+| Mosaic harvest | [Skill instructions](mosaic-harvest/SKILL.md) | Package validation |
 | Reasoning map | [Skill instructions](reasoning-map-skill/skills/reasoning-map/SKILL.md) | Package validation and the visualizer test suite |
+| Reasoning stack | [Skill instructions](reasoning-stack/SKILL.md) | Package validation |
 | Security reviewer | [Skill instructions](security-reviewer/SKILL.md) | Package validation and recorded evaluations |
 | Software documentation writer | [Skill instructions](writing-software-documentation/SKILL.md) | Package validation and recorded evaluations |
 

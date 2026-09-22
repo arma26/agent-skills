@@ -1,0 +1,4 @@
+interface:
+  display_name: "Mosaic Harvest"
+  short_description: "Extract audited signals from exploratory reasoning"
+  default_prompt: "Use $mosaic-harvest to derive compact behavioral signals, preserve residual obligations, and prepare a bounded handoff."
