@@ -71,6 +71,11 @@ constraints: []
 assumptions: []
 open_questions: []
 rejected_paths: []
+execution_hooks:
+  intent_scaffolding:
+    required_when: Assignment adds or changes code behavior.
+    persistence: ephemeral
+    closure_evidence: intent scaffold and post-implementation drift findings
 refresh_triggers:
   - assigned scope changes
   - source map revision changes
@@ -131,5 +136,8 @@ A closure reviewer needs:
 - handoff and ledger;
 - produced result or diff;
 - actual verification output.
+- intent scaffold and drift findings for behavioral code changes.
 
 The reviewer should not be told which signals are expected to be correct. It checks the result against the source and ledger independently.
+
+The scaffold is local execution evidence, not a durable reasoning artifact. Merge back only new evidence, changed constraints, signal outcomes, rejected paths, or gaps that remain useful after the implementation context is gone.

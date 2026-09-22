@@ -8,7 +8,7 @@ platforms: [linux, macos, windows]
 metadata:
   hermes:
     tags: [reasoning, delegation, handoff, context-transfer]
-    related_skills: [reasoning-map, mosaic-harvest]
+    related_skills: [reasoning-map, mosaic-harvest, intent-scaffolding]
 ---
 
 # Reasoning Stack
@@ -48,9 +48,10 @@ Read [the artifact contract](references/artifact-contract.md) before creating a 
 
 - `reasoning-map` must be installed when the workflow selects map-only, minimal, micro, or full paths.
 - `mosaic-harvest` must be installed for micro-harvest and full-stack projection. It ships as a sibling package in this repository.
+- `intent-scaffolding` is required when the delegated assignment adds or changes code behavior. It remains a separate skill because its scaffold is local and ephemeral, and it is also useful without maps or delegation.
 - A fresh-context subagent interface must be available for delegated execution and independent closure review. Use the host interface rather than assuming one command name.
 
-If `reasoning-map` is missing, stop before creating a map-backed artifact. If `mosaic-harvest` is missing, use only direct, map-only, or minimal handoff paths and report that signal extraction was unavailable; do not imitate a partial Mosaic schema from memory.
+If `reasoning-map` is missing, stop before creating a map-backed artifact. If `mosaic-harvest` is missing, use only direct, map-only, or minimal handoff paths and report that signal extraction was unavailable; do not imitate a partial Mosaic schema from memory. If `intent-scaffolding` is missing for a behavioral edit, stop before implementation and report the missing execution prerequisite rather than silently skipping drift review.
 
 ## Value Gate
 
@@ -171,9 +172,9 @@ Do not pass unrelated map clusters, secrets, or the entire conversation by defau
 
 Completion criterion: the subagent starts with bounded context and knows when broader context is justified.
 
-### 7. Detect staleness during execution
+### 7. Monitor staleness throughout execution
 
-Pause and reconcile the handoff when:
+Activate refresh-trigger monitoring before any implementation or other state-changing execution begins. Pause and reconcile the handoff whenever:
 
 - assignment scope changes;
 - the map revision changes materially;
@@ -182,11 +183,38 @@ Pause and reconcile the handoff when:
 - an excluded branch must be reconsidered;
 - the residual ledger gains a blocking obligation.
 
-Regenerate or explicitly reconcile the handoff. Never silently combine a stale packet with a newer map.
+Check these conditions before writing code, whenever evidence changes the local plan, before accepting a revised scaffold, and before closure review. Regenerate or explicitly reconcile the handoff. Never silently combine a stale packet with a newer map.
 
-Completion criterion: the executing agent is not governed by an obsolete projection.
+Completion criterion: no action or scaffold revision continues under an obsolete projection.
 
-### 8. Run independent closure review
+### 8. Scaffold behavioral implementation
+
+When the assignment adds or changes code behavior, invoke `intent-scaffolding` inside the receiving implementation context after it reads the handoff and immediate surrounding code, but before it writes code.
+
+Translate the handoff without copying it mechanically:
+
+- signals identify the governing direction and course-correction conditions;
+- ledger entries identify obligations and proof needs;
+- surrounding code supplies the actual entry point, inputs, state, branches, effects, and failure paths;
+- the intent scaffold states the local behavioral story and pseudocode where flow changes;
+- the scaffold must not broaden the assignment or override map uncertainty.
+
+Monitor the handoff's refresh triggers while implementing. If one fires, stop and complete the staleness reconciliation step before continuing.
+
+After implementation, run the intent skill's drift review. Return:
+
+- whether the code matches the scaffold;
+- control, state, data, failure, or reachability drift found;
+- corrections made or explicit scaffold revisions;
+- any durable finding proposed for merge-back.
+
+Keep the scaffold in the agent response by default. Persist it only when the user or repository explicitly requires it.
+
+Skip this stage for research, design-only work, documentation-only work, formatting, inert renames, and literal mechanical edits with no semantic effect.
+
+Completion criterion: every behavioral implementation has a local pre-edit story and post-edit drift result, no refresh trigger remains unreconciled, and non-behavioral assignments pay no scaffold tax.
+
+### 9. Run independent closure review
 
 Use a fresh context that did not author the implementation. Give it:
 
@@ -195,6 +223,7 @@ Use a fresh context that did not author the implementation. Give it:
 - residual contract ledger;
 - produced result or diff;
 - verification evidence.
+- intent scaffold and drift findings when the assignment changed code behavior.
 
 Do not give it only the ranked signals. Ask it to check:
 
@@ -207,7 +236,7 @@ Do not give it only the ranked signals. Ask it to check:
 
 Completion criterion: no blocking ledger item remains unresolved, and accepted compatibility changes are explicit.
 
-### 9. Merge durable findings back
+### 10. Merge durable findings back
 
 Update the owning reasoning map with only findings likely to affect future action, risk, or framing:
 
@@ -219,6 +248,8 @@ Update the owning reasoning map with only findings likely to affect future actio
 - newly distinct reasoning clusters.
 
 Update the map revision after merge-back. Keep routine logs, completed checklist items, and transient implementation details in tests, task records, or handoff history.
+
+Do not merge the intent scaffold itself. Merge only durable evidence or changed reasoning exposed by the scaffold or drift review.
 
 Completion criterion: a future fresh agent can understand what changed without replaying the execution transcript.
 
@@ -245,6 +276,8 @@ Do not create placeholder maps or empty handoff directories.
 - **Log pollution:** copies execution narration into the durable map.
 - **False merge-back:** rewrites original signals to pretend they predicted later findings.
 - **Stack tax:** invokes the full workflow for a mechanical task.
+- **Scaffold promotion:** persists a local implementation story as durable reasoning without evidence that it will matter later.
+- **Scaffold substitution:** treats local intent review as a replacement for independent closure review.
 
 ## Verification
 
@@ -257,6 +290,8 @@ Before closing:
 - [ ] the residual ledger covers every acceptance criterion and changed seam;
 - [ ] refresh triggers define when the handoff becomes stale;
 - [ ] the subagent received only its bounded cluster;
+- [ ] behavioral code assignments completed intent scaffolding and drift review;
+- [ ] non-behavioral assignments skipped the scaffold stage;
 - [ ] closure review used the original source and ledger;
 - [ ] blocking ledger items are resolved or explicitly returned;
 - [ ] merge-back contains durable evidence rather than logs;
@@ -270,5 +305,6 @@ Report:
 2. map path, cluster ids, and revision when applicable;
 3. handoff and ledger paths when created;
 4. dispatched assignment and authority boundary;
-5. closure-review findings and verification evidence;
-6. merge-back changes and unresolved gaps.
+5. intent-scaffold drift findings when behavior changed;
+6. closure-review findings and verification evidence;
+7. merge-back changes and unresolved gaps.

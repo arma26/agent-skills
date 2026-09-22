@@ -23,6 +23,7 @@ The repository needs one process-bearing skill that owns the transfer lifecycle 
 - Preserve both decision-shaping signals and exhaustive ordinary obligations.
 - Take a fast path when harvesting cannot change downstream behavior.
 - Require closure review against the original source, not only the ranked signals.
+- Require a local intent scaffold and drift review when a delegated assignment changes code behavior.
 - Merge durable evidence back into the owning map after execution.
 
 ## Non-goals
@@ -32,6 +33,7 @@ The repository needs one process-bearing skill that owns the transfer lifecycle 
 - Make Mosaic mandatory for mechanical work.
 - Turn every checklist item into a signal.
 - Store execution logs in the reasoning map.
+- Persist local intent scaffolds by default.
 - Route users among unrelated skills.
 
 ## Artifact model
@@ -71,9 +73,9 @@ The ledger may be embedded in the handoff when small. It is separate when indepe
 3. **Project** — run the Mosaic value gate and produce either a minimal packet, one-signal micro-harvest, or full signal stack plus ledger.
 4. **Revision-bind** — record map path, node ids, and revision in the handoff.
 5. **Dispatch** — give the subagent the handoff first; it opens the broader map only on a refresh trigger.
-6. **Execute** — the subagent performs the bounded assignment without silently broadening authority.
-7. **Close** — a fresh reviewer checks the result against the original source and residual ledger.
-8. **Merge back** — update the map with durable evidence, signal outcomes, changed constraints, reusable rejected paths, and unresolved gaps.
+6. **Monitor, scaffold, and execute** — activate refresh-trigger monitoring before execution. For behavioral code changes, the subagent derives an ephemeral local intent scaffold from the handoff and surrounding code, reconciles staleness whenever a trigger fires, implements against the current scaffold, and performs drift review. Other assignments execute directly under the same staleness checks.
+7. **Close** — a fresh reviewer checks the result against the original source, residual ledger, and any scaffold drift findings.
+8. **Merge back** — update the map with durable evidence, signal outcomes, changed constraints, reusable rejected paths, and unresolved gaps. Do not merge the ephemeral scaffold itself.
 
 ## Fast paths
 
@@ -109,6 +111,8 @@ Signals are selective; closure is exhaustive. The reviewer receives:
 
 The review checks public seams, runtime behavior, type or structural contracts, negative probes, compatibility behavior, ordering, cleanup, fixtures, callers, unsupported cases, and scope creep.
 
+For behavioral code changes, the reviewer also receives the intent scaffold and post-implementation drift findings. The scaffold explains the local implementation story; it does not replace the ledger or broaden the assignment.
+
 ## Merge-back discipline
 
 Merge only information likely to change future action, risk, or framing:
@@ -130,5 +134,7 @@ Keep routine logs, completed checklist items, and transient implementation detai
 - The handoff separates ranked signals from the residual contract ledger.
 - Refresh triggers make staleness explicit.
 - Closure review uses the original source and ledger, not only the signals.
+- Behavioral code assignments run intent scaffolding after handoff and before implementation, then include drift findings in closure review.
+- Intent scaffolds remain ephemeral unless the user or repository explicitly requires persistence.
 - Merge-back preserves durable evidence without polluting the map with logs.
 - Repository validation passes and the root README lists the new component.
