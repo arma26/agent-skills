@@ -18,6 +18,23 @@ description: Validate an example skill.
 Read [the reference](references/example.md).
 """
 
+HERMES_SKILL = """\
+---
+name: hermes-skill
+description: Validate a Hermes-compatible example skill.
+version: 0.1.0
+author: Austin, Hermes Agent
+license: MIT
+platforms: [linux, macos, windows]
+metadata:
+  hermes:
+    tags: [example]
+    related_skills: []
+---
+
+# Hermes skill
+"""
+
 
 class SkillValidationTests(unittest.TestCase):
     def test_discovers_skills_without_entering_worktrees(self) -> None:
@@ -40,6 +57,17 @@ class SkillValidationTests(unittest.TestCase):
             references.mkdir(parents=True)
             (skill / "SKILL.md").write_text(VALID_SKILL, encoding="utf-8")
             (references / "example.md").write_text("# Example\n", encoding="utf-8")
+
+            result = validate_skill(root, skill)
+
+            self.assertEqual(result.errors, ())
+
+    def test_accepts_hermes_frontmatter_extensions(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            skill = root / "hermes-skill"
+            skill.mkdir()
+            (skill / "SKILL.md").write_text(HERMES_SKILL, encoding="utf-8")
 
             result = validate_skill(root, skill)
 
