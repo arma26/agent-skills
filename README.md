@@ -32,12 +32,14 @@ The command returns a nonzero status when a package or test fails. Inspect the n
 
 | Component | Entry point | Verification |
 | --- | --- | --- |
-| Open source polish | [Skill instructions](open-source-polish/SKILL.md) | Package validation |
+| Implementation strategy reviewer | [Skill instructions](implementation-strategy-reviewer/SKILL.md) | Package validation and recorded evaluations |
 | Mosaic harvest | [Skill instructions](mosaic-harvest/SKILL.md) | Package validation |
+| Open source polish | [Skill instructions](open-source-polish/SKILL.md) | Package validation |
 | Reasoning map | [Skill instructions](reasoning-map-skill/skills/reasoning-map/SKILL.md) | Package validation and the visualizer test suite |
 | Reasoning stack | [Skill instructions](reasoning-stack/SKILL.md) | Package validation |
 | Security reviewer | [Skill instructions](security-reviewer/SKILL.md) | Package validation and recorded evaluations |
 | Software documentation writer | [Skill instructions](writing-software-documentation/SKILL.md) | Package validation and recorded evaluations |
+| TLA triage | [Skill instructions](tla-triage/SKILL.md) | Package validation |
 
 Each skill directory contains its instructions and optional `agents/`, `references/`, or `assets/` resources. The reasoning-map component also contains executable visualization tools.
 
