@@ -1,6 +1,14 @@
 ---
 name: writing-software-documentation
-description: Use when creating, revising, or reviewing repository documentation for software users and operators, especially README files, quick starts, conceptual guides, operational procedures, troubleshooting pages, and linked reference material.
+description: "Use when creating, revising, or reviewing repository documentation for software users and operators, especially README files, quick starts, conceptual guides, operational procedures, troubleshooting pages, and linked reference material."
+version: 0.1.0
+author: Austin, Hermes Agent
+license: MIT
+platforms: [linux, macos, windows]
+metadata:
+  hermes:
+    tags: [documentation, writing, technical-writing, README]
+    related_skills: [hermes-agent-skill-authoring]
 ---
 
 # Writing Software Documentation

@@ -1,6 +1,14 @@
 ---
 name: security-reviewer
-description: Use after software design or brainstorming and after every verified implementation, especially when changes affect inputs, outputs, trust boundaries, authority, storage, filesystem, networking, dependencies, parsing, logging, personal information, or generated artifacts.
+description: "Use after software design or brainstorming and after every verified implementation, especially when changes affect inputs, outputs, trust boundaries, authority, storage, filesystem, networking, dependencies, parsing, logging, personal information, or generated artifacts."
+version: 0.1.0
+author: Austin, Hermes Agent
+license: MIT
+platforms: [linux, macos, windows]
+metadata:
+  hermes:
+    tags: [security, code-review, audit, advisory]
+    related_skills: [hermes-agent-skill-authoring]
 ---
 
 # Security Reviewer

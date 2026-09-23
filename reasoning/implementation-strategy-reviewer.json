@@ -1,0 +1,127 @@
+{
+  "graph_id": "reasoning-map.implementation-strategy-reviewer",
+  "title": "Implementation strategy reviewer skill",
+  "scope": "agent-skills.implementation-strategy-reviewer",
+  "status": "closed",
+  "revision": 4,
+  "nodes": [
+    {
+      "id": "problem.post-implementation-strategy-review",
+      "title": "Post-implementation strategy review gap",
+      "kind": "problem",
+      "status": "active",
+      "summary": "Existing review can establish spec, tests, style, and security while missing whether the implementation uses an appropriate established algorithm, data structure, architecture, or operating model.",
+      "deficiencies": []
+    },
+    {
+      "id": "decision.prior-art-first",
+      "title": "Prior art is the default hypothesis",
+      "kind": "decision",
+      "status": "accepted",
+      "summary": "Begin from the presumption that the problem class has established solutions. Identify repository, standard-library, framework, protocol, textbook, or industry patterns before accepting custom machinery.",
+      "deficiencies": []
+    },
+    {
+      "id": "constraint.fit-over-fashion",
+      "title": "Fit outranks pattern reputation",
+      "kind": "constraint",
+      "status": "active",
+      "summary": "An established pattern is not automatically correct. Validate assumptions against actual workload, scale, consistency, latency, failure, lifecycle, and compatibility constraints.",
+      "deficiencies": []
+    },
+    {
+      "id": "decision.evidence-calibrated",
+      "title": "Claims require inspectable evidence",
+      "kind": "decision",
+      "status": "accepted",
+      "summary": "Separate demonstrated defects, credible concerns, and open questions. Use complexity analysis, call-path evidence, tests, benchmarks, or profiling when claims depend on runtime behavior.",
+      "deficiencies": []
+    },
+    {
+      "id": "boundary.read-only-advisory",
+      "title": "Reviewer remains read-only and advisory",
+      "kind": "boundary",
+      "status": "active",
+      "summary": "The skill analyzes completed implementations and recommends changes but does not modify code, invent release authority, or duplicate general style and security review.",
+      "deficiencies": []
+    },
+    {
+      "id": "risk.cargo-cult-standards",
+      "title": "Industry-standard cargo cult",
+      "kind": "risk",
+      "status": "active",
+      "summary": "A reviewer may replace working local code with fashionable architecture without proving better fit, increasing complexity and migration risk.",
+      "deficiencies": ["Controlled scenarios must prove the skill can reject inappropriate standard-pattern advice."]
+    },
+    {
+      "id": "risk.theoretical-performance",
+      "title": "Theoretical optimization without impact",
+      "kind": "risk",
+      "status": "active",
+      "summary": "Asymptotic critique can create churn when input bounds are tiny or operational costs dominate.",
+      "deficiencies": ["Evaluation must distinguish material inefficiency from harmless simplicity."]
+    },
+    {
+      "id": "acceptance.skill-artifact",
+      "title": "Reusable verified skill artifact",
+      "kind": "goal",
+      "status": "accepted",
+      "summary": "Create a valid standalone skill under implementation-strategy-reviewer with controlled evaluation scenarios demonstrating prior-art-first and fit-sensitive behavior.",
+      "deficiencies": []
+    },
+    {
+      "id": "evidence.controlled-evaluations",
+      "title": "Controlled evaluations passed",
+      "kind": "evidence",
+      "status": "accepted",
+      "summary": "Three fresh-context scenarios exercised inferior bespoke design, justified bounded simplicity, and evidence-starved architecture. All expected behaviors passed and repository validation passed 8 skills and 2 test suites.",
+      "deficiencies": []
+    },
+    {
+      "id": "signal.prior-art-before-invention",
+      "title": "Prior art before invention held provisionally",
+      "kind": "decision",
+      "status": "held",
+      "summary": "Scenario 1 showed that the prior-art-first signal changed review behavior despite passing implementation tests.",
+      "deficiencies": []
+    },
+    {
+      "id": "signal.fit-before-fashion",
+      "title": "Fit before fashion held provisionally",
+      "kind": "decision",
+      "status": "held",
+      "summary": "Scenario 2 showed that bounded simplicity can defeat fashionable infrastructure advice.",
+      "deficiencies": []
+    },
+    {
+      "id": "signal.advisory-evidence-gate",
+      "title": "Advisory evidence gate held provisionally",
+      "kind": "decision",
+      "status": "held",
+      "summary": "Scenario 3 converted missing facts into verification work and refused patch and release authority.",
+      "deficiencies": []
+    },
+    {
+      "id": "evidence.related-skill-resolution",
+      "title": "Related skill reference resolved",
+      "kind": "evidence",
+      "status": "accepted",
+      "summary": "The closure blocker was corrected by referencing the existing security-reviewer skill; repository validation again passed 8 skills and 2 test suites.",
+      "deficiencies": []
+    }
+  ],
+  "edges": [
+    {"from": "problem.post-implementation-strategy-review", "to": "decision.prior-art-first", "type": "motivates"},
+    {"from": "decision.prior-art-first", "to": "constraint.fit-over-fashion", "type": "constrained_by"},
+    {"from": "constraint.fit-over-fashion", "to": "risk.cargo-cult-standards", "type": "mitigates"},
+    {"from": "decision.evidence-calibrated", "to": "risk.theoretical-performance", "type": "mitigates"},
+    {"from": "boundary.read-only-advisory", "to": "acceptance.skill-artifact", "type": "constrains"},
+    {"from": "decision.prior-art-first", "to": "acceptance.skill-artifact", "type": "supports"},
+    {"from": "decision.evidence-calibrated", "to": "acceptance.skill-artifact", "type": "supports"},
+    {"from": "evidence.controlled-evaluations", "to": "acceptance.skill-artifact", "type": "supports"},
+    {"from": "evidence.controlled-evaluations", "to": "signal.prior-art-before-invention", "type": "supports"},
+    {"from": "evidence.controlled-evaluations", "to": "signal.fit-before-fashion", "type": "supports"},
+    {"from": "evidence.controlled-evaluations", "to": "signal.advisory-evidence-gate", "type": "supports"},
+    {"from": "evidence.related-skill-resolution", "to": "acceptance.skill-artifact", "type": "supports"}
+  ]
+}

@@ -1,9 +1,19 @@
 ---
 name: open-source-polish
 description: >-
-  Audit or improve a repository through stage-appropriate open-source maturity milestones.
-  Use for prototype release, contributor readiness, public-project polish, governance, and release or production readiness reviews.
-  Also use for documentation drift, convention drift, artifact safety, operational clarity, or data recovery readiness.
+  Audit or improve a repository through stage-appropriate open-source maturity
+  milestones. Use for prototype release, contributor readiness,
+  public-project polish, governance, and release or production readiness
+  reviews. Also use for documentation drift, convention drift, artifact safety,
+  operational clarity, or data recovery readiness.
+version: 0.1.0
+author: Austin, Hermes Agent
+license: MIT
+platforms: [linux, macos, windows]
+metadata:
+  hermes:
+    tags: [open-source, maturity, audit, release-readiness, polish]
+    related_skills: [hermes-agent-skill-authoring]
 ---
 
 # Open source polish

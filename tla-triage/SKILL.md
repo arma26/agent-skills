@@ -1,6 +1,14 @@
 ---
 name: tla-triage
-description: Use when a code or design change might need bounded TLA+ modeling before implementation because correctness depends on allowed or forbidden sequences across boundaries such as network, filesystem, timers, persistence, cryptographic state, or session state; especially when replay, retries, stale state, duplicate delivery, recovery, approval, authority, or trust transitions drive the risk.
+description: "Use when a code or design change might need bounded TLA+ modeling before implementation because correctness depends on allowed or forbidden sequences across boundaries such as network, filesystem, timers, persistence, cryptographic state, or session state; especially when replay, retries, stale state, duplicate delivery, recovery, approval, authority, or trust transitions drive the risk."
+version: 0.1.0
+author: Austin, Hermes Agent
+license: MIT
+platforms: [linux, macos, windows]
+metadata:
+  hermes:
+    tags: [formal-methods, tla+, modeling, verification, design]
+    related_skills: [hermes-agent-skill-authoring]
 ---
 
 # TLA Triage

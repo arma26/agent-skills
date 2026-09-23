@@ -1,0 +1,79 @@
+- obligation: Create a standalone skill at implementation-strategy-reviewer/SKILL.md.
+  source: User request.
+  seam: Skill package path and frontmatter.
+  dimensions: [structure, compatibility]
+  positive_proof: The repository validator accepts the new skill and frontmatter.
+  negative_probe: No machine-local path or unresolved related-skill reference appears in the skill.
+  affected_callers: [Hermes skill loader, compatible agent skill loaders]
+  preservation_rule: Do not modify existing skill files or user worktree changes.
+  status: verified
+
+- obligation: Run after implementation to judge the chosen solution strategy, not merely style or spec compliance.
+  source: Conversation and reasoning map problem.post-implementation-strategy-review.
+  seam: Review trigger and workflow.
+  dimensions: [runtime, structure, documentation]
+  positive_proof: A controlled scenario makes the reviewer identify a materially inferior algorithm or architecture and an established replacement.
+  negative_probe: The reviewer does not collapse into generic lint, security, or naming advice.
+  affected_callers: [implementation agents, closure-review workflows]
+  preservation_rule: Keep the review axis distinct from ordinary code review.
+  status: verified
+
+- obligation: Assume the problem class has been solved before and search for established approaches first.
+  source: User request and map decision.prior-art-first.
+  seam: First substantive review actions and recommendation evidence.
+  dimensions: [runtime, structure, documentation]
+  positive_proof: The workflow inventories repository-local, platform, standard-library, framework, protocol, textbook, or industry prior art before endorsing custom machinery.
+  negative_probe: A bespoke implementation cannot be approved merely because it passes tests.
+  affected_callers: [reviewed implementation]
+  preservation_rule: Prior-art-first is a search presumption, not proof that a named pattern fits.
+  status: verified
+
+- obligation: Validate established approaches against actual constraints rather than cargo-culting them.
+  source: Map constraint.fit-over-fashion and risk.cargo-cult-standards.
+  seam: Comparison and recommendation classification.
+  dimensions: [runtime, compatibility, ordering]
+  positive_proof: Findings state relevant assumptions and explain why an alternative fits the observed workload, scale, failure, consistency, lifecycle, and compatibility needs.
+  negative_probe: A tiny bounded-input implementation is not condemned solely for inferior asymptotic complexity.
+  affected_callers: [reviewed implementation, maintainers]
+  preservation_rule: Permit custom solutions when constraints genuinely disqualify established options.
+  status: verified
+
+- obligation: Analyze algorithms, data structures, system design, resource costs, failure behavior, concurrency, and operational fit where relevant.
+  source: User request.
+  seam: Review coverage and report.
+  dimensions: [runtime, type, compatibility, ordering, documentation]
+  positive_proof: The report covers only applicable dimensions and identifies evidence gaps for unavailable runtime facts.
+  negative_probe: The reviewer does not fabricate workload, benchmark, or production behavior.
+  affected_callers: [maintainers]
+  preservation_rule: Not-applicable dimensions remain explicit rather than generating filler findings.
+  status: verified
+
+- obligation: Calibrate findings and require evidence for material recommendations.
+  source: Map decision.evidence-calibrated.
+  seam: Report contract.
+  dimensions: [runtime, documentation]
+  positive_proof: Findings distinguish demonstrated issue, credible concern, and open question; blocking recommendations cite concrete evidence.
+  negative_probe: The reviewer does not call an optimization necessary without a relevant bound, measurement, or reachable cost path.
+  affected_callers: [maintainers, fix agents]
+  preservation_rule: No finding supported by available evidence is a valid result.
+  status: verified
+
+- obligation: Remain read-only and advisory.
+  source: Map boundary.read-only-advisory.
+  seam: Authority boundary.
+  dimensions: [runtime, documentation]
+  positive_proof: The skill forbids edits and distinguishes analysis from release authority.
+  negative_probe: The workflow does not auto-fix, commit, or declare ship status.
+  affected_callers: [implementation agents]
+  preservation_rule: Return recommendations and verification needs only.
+  status: verified
+
+- obligation: Verify behavior with controlled evaluation scenarios.
+  source: User profile preference and map acceptance.skill-artifact.
+  seam: evaluations/scenarios.md and executed evaluation record.
+  dimensions: [fixture, runtime, documentation]
+  positive_proof: Independent fresh-context runs cover inferior bespoke design, justified simple design, and evidence-starved design; results are recorded.
+  negative_probe: A skill text inspection alone is not treated as behavioral validation.
+  affected_callers: [future skill maintainers]
+  preservation_rule: Exit quickly when a scenario shows little review value.
+  status: verified
